@@ -9,15 +9,15 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```bash
    yarn 
    ```
-or
-   ```bash
-npm install
-   ```
+   or
+      ```bash
+   npm install
+      ```
 2. Start the app
    ```bash
    yarn start
    ```
-or
+   or
    ```bash
     npx expo start
    ```
