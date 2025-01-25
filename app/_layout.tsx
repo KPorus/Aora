@@ -20,7 +20,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = Appearance.getColorScheme();
-  const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
+  const theme = colorScheme === "dark" ? Colors.dark : Colors.dark;
 
   const [loaded] = useFonts({
     "Poppins-Black": require("../assets/fonts/Poppins-Black.ttf"),
@@ -53,7 +53,8 @@ export default function RootLayout() {
       }}
     >
         <Stack.Screen name="(tabs)" options={{headerShown:false}} />
-        <Stack.Screen name="index" />
+        <Stack.Screen name="(auth)"  />
+        <Stack.Screen name="index" options={{headerShown:false}}/>
         <Stack.Screen name="+not-found" />
     </Stack>
   );
