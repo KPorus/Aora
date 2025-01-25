@@ -27,6 +27,7 @@ export default HomeBtn;
 
 const styles = StyleSheet.create({
   button: {
+    width: '100%',
     minHeight: 62,
     backgroundColor: "#FF8E01",
     borderRadius: 5,
