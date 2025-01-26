@@ -33,10 +33,16 @@ const FormField: React.FC<FormFieldProps> = ({
   placeholder,
 }) => {
   const [showpass, setshowpass] = useState(false);
+  const [isFocused, setFocused] = useState(true);
   return (
     <View style={[styles.formContainer, otherStyles]}>
       <Text style={styles.text}>{title}</Text>
-      <View style={styles.input}>
+      <View
+        style={[
+          styles.input,
+          isFocused && { borderColor: "#FF9C01", borderWidth: 1 },
+        ]}
+      >
         <TextInput
           style={styles.inputBox}
           value={value}
@@ -46,6 +52,8 @@ const FormField: React.FC<FormFieldProps> = ({
           placeholder={placeholder}
           placeholderTextColor={"#7b7b8b"}
           secureTextEntry={title === "Password" && !showpass}
+          onFocus={() => setFocused(true)} // Handle focus
+          onBlur={() => setFocused(false)} // Handle blur
         />
         {title === "Password" && (
           <TouchableOpacity
@@ -81,13 +89,14 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
     borderWidth: 1,
-    backgroundColor:"rgba(255,255,255,0.1)",
+    backgroundColor: "rgba(255,255,255,0.1)",
     borderColor: "black",
     paddingHorizontal: 20,
+    paddingVertical: 10,
     marginTop: 10,
     marginBottom: 10,
     borderRadius: 4,
-    flexDirection:"row",
+    flexDirection: "row",
     alignItems: "center",
   },
   inputBox: {
