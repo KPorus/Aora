@@ -12,20 +12,18 @@ import {
 } from "react-native";
 
 interface FormFieldProps {
-  title: string;
+  title?: string;
   value: string;
   handleChangeText: (e: string) => void;
-  otherStyles?: ViewStyle; 
   autoCapitalize?: TextInputProps["autoCapitalize"];
   keyboardType?: TextInputProps["keyboardType"];
   placeholder?: TextInputProps["placeholder"];
 }
 
-const FormField: React.FC<FormFieldProps> = ({
+const SearchInput: React.FC<FormFieldProps> = ({
   title,
   value,
   handleChangeText,
-  otherStyles,
   autoCapitalize,
   keyboardType,
   placeholder,
@@ -33,7 +31,7 @@ const FormField: React.FC<FormFieldProps> = ({
   const [showpass, setshowpass] = useState(false);
   const [isFocused, setFocused] = useState(true);
   return (
-    <View style={[styles.formContainer, otherStyles]}>
+    <View style={styles.formContainer}>
       <Text style={styles.text}>{title}</Text>
       <View
         style={[
@@ -49,35 +47,29 @@ const FormField: React.FC<FormFieldProps> = ({
           keyboardType={keyboardType}
           placeholder={placeholder}
           placeholderTextColor={"#7b7b8b"}
-          secureTextEntry={title === "Password" && !showpass}
           onFocus={() => setFocused(true)} // Handle focus
           onBlur={() => setFocused(false)} // Handle blur
         />
-        {title === "Password" && (
-          <TouchableOpacity
-            // style={styles.eyeIcon}
-            onPress={() => setshowpass(!showpass)}
-          >
-            <Image
-              source={!showpass ? icons.eye : icons.eyeHide}
-              resizeMode="contain"
-              style={{ width: 24, height: 24 }}
-            />
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity onPress={() => setshowpass(!showpass)}>
+          <Image
+            source={icons.search}
+            resizeMode="contain"
+            style={{ width: 24, height: 24 }}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
 
-export default FormField;
+export default SearchInput;
 
 const styles = StyleSheet.create({
   formContainer: {
     justifyContent: "flex-start",
     alignContent: "flex-start",
-    marginTop: 8,
     marginBottom: 8,
+    borderRadius: 10,
   },
   text: {
     fontSize: 16,
@@ -91,7 +83,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
     paddingHorizontal: 20,
     paddingVertical: 10,
-    marginTop: 10,
+    // marginTop: 10,
     marginBottom: 10,
     borderRadius: 4,
     flexDirection: "row",
